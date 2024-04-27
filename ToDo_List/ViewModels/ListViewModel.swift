@@ -1,43 +1,24 @@
-//
-//  ListViewModel.swift
-//  ToDo_List
-//
-//  Created by MacBookPro on 02.05.2021.
-//
-
 import Foundation
 import SwiftUI
 
-class ListViewModel: ObservableObject {
-    
+// MARK: - ListViewModel Declaration
+
+final class ListViewModel: ObservableObject {
+
+    // MARK: Properties
     @Published var items: [ItemModel] = [] {
         didSet {
             saveItems()
         }
     }
-    
     let itemsKey: String = "items_list"
     
+    // MARK: - Initializer
     init() {
         getItems()
     }
     
-    func getItems() {
-//        let newItems = [
-//            ItemModel(title: "First item", isCompleted: false),
-//            ItemModel(title: "Second item", isCompleted: true),
-//            ItemModel(title: "Third", isCompleted: false),
-//        ]
-//        items.append(contentsOf: newItems)
-        
-        guard
-            let data = UserDefaults.standard.data(forKey: itemsKey),
-            let savedItems = try? JSONDecoder().decode([ItemModel].self, from: data)
-        else { return }
-        
-        self.items = savedItems
-    }
-    
+    // MARK: - List Managment Methods
     func deleteItem(indexSet: IndexSet) {
         items.remove(atOffsets: indexSet)
     }
@@ -57,6 +38,16 @@ class ListViewModel: ObservableObject {
             items[index] = item.updateCompletion()
         }
         
+    }
+    
+    // MARK: - Saving & Loading Methods
+    func getItems() {
+        guard
+            let data = UserDefaults.standard.data(forKey: itemsKey),
+            let savedItems = try? JSONDecoder().decode([ItemModel].self, from: data)
+        else { return }
+        
+        self.items = savedItems
     }
     
     func saveItems() {

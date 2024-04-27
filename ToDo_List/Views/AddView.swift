@@ -1,20 +1,16 @@
-//
-//  AddView.swift
-//  ToDo_List
-//
-//  Created by MacBookPro on 01.05.2021.
-//
-
 import SwiftUI
 
+// MARK: - AddView Declaration
 struct AddView: View {
     
+    // MARK: - Properties
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var listViewModel: ListViewModel
     @State var textFieldText: String = ""
     
     @State var textFieldEmpty = false
     
+    // MARK: - Body
     var body: some View {
         ScrollView {
             VStack {
@@ -45,7 +41,8 @@ struct AddView: View {
         .navigationTitle("Add an item 🖊")
     }
     
-    func saveButtonTapped() {
+    // MARK: - Methods
+    private func saveButtonTapped() {
         
         if textFieldText == "" {
             textFieldEmpty = true
@@ -57,7 +54,8 @@ struct AddView: View {
     
 }
 
-struct AddView_Previews: PreviewProvider {
+// MARK: - AddView Preveiw Declaration
+private struct AddView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             AddView()
