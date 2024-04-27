@@ -1,17 +1,13 @@
-//
-//  NoItemsView.swift
-//  ToDo_List
-//
-//  Created by MacBookPro on 02.05.2021.
-//
-
 import SwiftUI
 
+// MARK: - NoItemsView Declaration
 struct NoItemsView: View {
     
+    // MARK: - Properties
     @State var animate: Bool = false
     let secondaryAccentColor = Color("SecondaryAccentColor")
     
+    // MARK: - Body
     var body: some View {
         ScrollView {
             VStack(spacing: 10) {
@@ -48,6 +44,7 @@ struct NoItemsView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
     
+    // MARK: - Methdos
     func addAnimation() {
         guard !animate else { return }
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
@@ -63,7 +60,8 @@ struct NoItemsView: View {
     
 }
 
-struct NoItemsView_Previews: PreviewProvider {
+// MARK: - NoItemsView Preview Declaration
+private struct NoItemsView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             NoItemsView()

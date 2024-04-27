@@ -1,17 +1,13 @@
-//
-//  ListView.swift
-//  ToDo_List
-//
-//  Created by MacBookPro on 01.05.2021.
-//
-
 import SwiftUI
 
+// MARK: - ListView Declaration
 struct ListView: View {
     
+    // MARK: - Properties
     @EnvironmentObject private var listViewModel: ListViewModel
     @State private var showAddView: Bool = false
     
+    // MARK: - Body
     var body: some View {
         ZStack {
             if listViewModel.items.isEmpty {
@@ -42,6 +38,7 @@ struct ListView: View {
     
 }
 
+// MARK: - ListView_Preveiw Declaration
 struct ListView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
